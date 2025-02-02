@@ -31,4 +31,18 @@ class Cell:
             line = Line(x1, y2, x2, y2)
             line.draw(self.win.canvas, "blue")
 
-            
+    def draw_move(self, to_cell, undo=False):
+        color = "red"
+        if undo:
+            color = "gray"
+
+        # starting point
+        from_midpoint_x = abs(self._x1 + self._x2) // 2
+        from_midpoint_y = abs(self._y1 + self._y2) // 2
+
+        # ending point
+        to_midpoint_x = abs(to_cell._x1 + to_cell._x2) // 2
+        to_midpoint_y = abs(to_cell._y1 + to_cell._y2) // 2
+
+        line = Line(from_midpoint_x, from_midpoint_y, to_midpoint_x, to_midpoint_y)
+        line.draw(self.win.canvas, color)

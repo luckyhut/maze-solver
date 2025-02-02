@@ -3,12 +3,15 @@ from cell import Cell
 
 def main():
     win = Window(1800, 1600)
-    cell_1 = Cell(win)
-    cell_1.draw(25, 25, 50, 50)
-    cell_2 = Cell(win, False, False, False)
-    cell_2.draw(80, 80, 120, 120)
-    cell_3 = Cell(win, False, False)
-    cell_3.draw(270, 270, 300, 300)
+    c1 = Cell(win)
+    c1.has_right_wall = False
+    c1.draw(50, 50, 100, 100)
+    
+    c2 = Cell(win)
+    c2.draw(100, 50, 150, 100)
+
+    c1.draw_move(c2)
+    
     win.wait_for_close()
 
 main()
