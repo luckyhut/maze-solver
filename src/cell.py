@@ -23,13 +23,13 @@ class Cell:
             line.draw(self.win.canvas, "black")
         if self.wall_right:
             line = Line(x2, y1, x2, y2)
-            line.draw(self.win.canvas, "red")
+            line.draw(self.win.canvas, "black")
         if self.wall_top:
             line = Line(x1, y1, x2, y1)
-            line.draw(self.win.canvas, "green")
+            line.draw(self.win.canvas, "black")
         if self.wall_bottom:
             line = Line(x1, y2, x2, y2)
-            line.draw(self.win.canvas, "blue")
+            line.draw(self.win.canvas, "black")
 
     def draw_move(self, to_cell, undo=False):
         color = "red"
