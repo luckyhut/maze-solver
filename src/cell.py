@@ -1,12 +1,13 @@
 from graphics import Line
 
 class Cell:
-    def __init__(self, win, wall_left=True, wall_right=True, wall_top=True, wall_bottom=True):
+    def __init__(self, win=None, wall_left=True, wall_right=True, wall_top=True, wall_bottom=True):
         self._x1 = None
         self._y1 = None
         self._x2 = None
         self._y1 = None
         self.win = win
+        self.visited = False
 
         self.wall_left = wall_left
         self.wall_right = wall_right
@@ -14,22 +15,34 @@ class Cell:
         self.wall_bottom = wall_bottom
 
     def draw(self, x1, y1, x2, y2):
+        if self.win is None:
+            return
         self._x1 = x1
         self._x2 = x2
         self._y1 = y1
         self._y2 = y2
+
+        line_left = Line(x1, y1, x1, y2)
+        line_right = Line(x2, y1, x2, y2)
+        line_top = Line(x1, y1, x2, y1)    
+        line_bottom = Line(x1, y2, x2, y2)
+        
         if self.wall_left:
-            line = Line(x1, y1, x1, y2)
-            line.draw(self.win.canvas, "black")
+            self.win.draw_line(line_left, "black")
+        else:
+            self.win.draw_line(line_left, "white")
         if self.wall_right:
-            line = Line(x2, y1, x2, y2)
-            line.draw(self.win.canvas, "black")
+            self.win.draw_line(line_right, "black")
+        else:
+            self.win.draw_line(line_right, "white")
         if self.wall_top:
-            line = Line(x1, y1, x2, y1)
-            line.draw(self.win.canvas, "black")
+            self.win.draw_line(line_top, "black")
+        else:
+            self.win.draw_line(line_top, "white")
         if self.wall_bottom:
-            line = Line(x1, y2, x2, y2)
-            line.draw(self.win.canvas, "black")
+            self.win.draw_line(line_bottom, "black")
+        else:
+            self.win.draw_line(line_bottom, "white")
 
     def draw_move(self, to_cell, undo=False):
         color = "red"
