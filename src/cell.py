@@ -5,7 +5,7 @@ class Cell:
         self._x1 = None
         self._y1 = None
         self._x2 = None
-        self._y1 = None
+        self._y2 = None
         self.win = win
         self.visited = False
 
